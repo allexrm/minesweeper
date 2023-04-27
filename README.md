@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Minesweeper Classic Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Minesweeper is a classic 90's game where the objective is to reveal all the tiles of the grid without detonating any hidden mines. The grid consists of a number of tiles, some of which contain hidden mines. Your task as the player is to click on each tile to uncover them and use the revealed numbers to deduce the location of the hidden mines.
 
-## Available Scripts
+The objective of this project is to recreate this classic game using React.js, maintaining its original characteristics and adding new features. This version has 2 game modes: Single Player and Multiplayer.
 
-In the project directory, you can run:
+In the `single player` mode, you will play against the clock, trying to reveal all the cells in the grid without triggering any mines and in the shortest time possible. In `multiplayer` mode, 2 players will make their moves in alternating turns. The winner is the one who reveals the last cell or survives for the longest time.
 
-### `npm start`
+## Running the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before you begin, you will need to have `Git` and `Node.js` installed on your machine. Once you have the prerequisites, simply open a command terminal and follow the steps below:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+    $ git clone https://github.com/allexrm/minesweeper.git
+    $ cd minesweeper
+    $ npm install
+    $ npm run dev
+```
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The project was developed to run only locally, with no communication with servers. To simulate communication with a REST API, a `hook` called `useApiController` was created, which uses `localStorage` to persist data and returns a collection of asynchronous methods that enable interaction with this data.
+## Screenshots
+![Home Page](./screenshots/home-page.png)
+![Game](./screenshots/game-page.png)

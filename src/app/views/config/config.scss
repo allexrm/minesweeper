@@ -1,0 +1,11 @@
+
+.config-view {
+    max-width: 700px;
+    width: 50%;
+
+    .config-form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}

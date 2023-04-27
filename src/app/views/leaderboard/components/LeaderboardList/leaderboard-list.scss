@@ -1,0 +1,49 @@
+
+.leaderboard-list {
+    .list-col {
+        flex: 1;
+        padding: 0 5px;
+    }
+    .name { flex: 2 }
+    .duration, .date { text-align: right; }
+
+    .leaderboard-list-head {
+        > div { 
+            color: #002a20;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+
+    .leaderboard-entry {
+        background-color: #005541;
+        color: #fff;
+        border-width: 0 3px 3px 0;
+        border-color:  #003a2c;
+        border-style: solid;
+        margin: 2px 0;
+        padding: 5px 10px;
+        border-radius: 4px;
+    
+        align-items: center;
+        position: relative;
+
+        .trophy {
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            svg {
+                height: 20px;
+            }
+        }
+        .position-0 {
+            color: #ffca00;
+        }
+        .position-1 {
+            color: #cacaca;
+        }
+        .position-2 {
+            color: #d78200;
+        }
+    }    
+}

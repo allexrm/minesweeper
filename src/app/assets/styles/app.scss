@@ -1,0 +1,55 @@
+
+html, body, body > div, .App {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+}
+.acfifjfajpekbmhmjppnmmjgmhjkildl {
+    display: none;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #007157;
+
+    div { display: flex; }
+
+    main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            
+            .view-content {
+                background-color: #ffffff;
+                box-shadow: 2px 4px #383838;
+                border-radius: 10px;
+                padding: 10px;
+                min-width: 355px;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;        
+            }
+        }
+    }
+}
+@import './form.scss';
+@import './app-footer.scss';

@@ -1,0 +1,40 @@
+
+.game-board {
+    flex-direction: column;
+    width: 100%;
+    background-color: #007157;
+    border-radius: 4px;
+    .game-board-row {
+        .game-board-col {
+            flex: 1;
+            background-color: #005541;
+            color: #fff;
+            border-width: 0 3px 3px 0;
+            border-color:  #003a2c;
+            border-style: solid;
+            margin: 1px;
+            border-radius: 4px;
+
+            aspect-ratio: 100/100;
+            font-size: 10px;
+            align-items: center;
+            justify-content: center;
+
+            &.revealed {
+                background-color: #188a6f;
+                color: #fff;
+                border-width: 3px 0 0 3px;
+                border-color:  #003a2c;    
+            }
+            &.flag {
+                border-width: 1px 2px 2px 1px;
+                background-color: #2b644c;
+                border-color: #255742;
+                color: #f5dd04;
+                svg {
+                    height: 45%;
+                }
+            }
+        }
+    }
+}

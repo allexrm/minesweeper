@@ -1,0 +1,37 @@
+
+
+.game-header {
+    justify-content: space-around;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #007157;
+    margin: 5px;
+    > div {
+        flex: 1;
+        text-align: center;
+        align-items: center;
+        padding: 10px;
+        color: #ffffff;
+        svg {
+            margin: 0 5px;
+        }
+    }
+
+    .players {
+        flex-direction: column;
+        .player-name {
+            align-items: center;
+            padding: 5px 10px;
+            border: solid 2px #003126;
+            background-color: #004e3d;
+            border-radius: 10px;
+            margin: 1px 0;
+            width: 100%;
+            opacity: 0.5;
+            &.active { opacity: 1 }
+        }
+    }
+    &.game-mode-multi {
+        .flags { opacity: 0.3 }
+    }
+}

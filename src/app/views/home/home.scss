@@ -1,0 +1,31 @@
+
+
+.home-view {
+    max-width: 700px;
+    width: 50%;
+
+    .home-title {
+        flex-direction: column;
+        align-items: center;
+        img {
+            width: 50%;
+        }
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+
+            color: #ffffff;
+            text-shadow: 2px 2px #f5dd04, 4px 4px #EC5C0C, 6px 6px #A21800, 8px 8px #0a0a0a;
+
+            font-size: 70px;
+            line-height: 82px;
+            margin-top: -50px;
+
+            padding: 10px 30px;
+        }
+    }
+    
+    .home-menu {
+
+    }
+}
