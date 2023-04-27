@@ -17,7 +17,7 @@ const Tile = (props) => {
         case 'X': className = 'bomb'; content = <FontAwesomeIcon icon={faBomb} />; break;
         case 'Bf': className = 'flag'; content = <FontAwesomeIcon icon={faFlag} />; break;
         case 'f': className = 'flag'; content = <FontAwesomeIcon icon={faFlag} />; break;
-        case 'B': className = ''; content = value; break; //temp
+        case 'B': className = ''; content = ''; break;
         case '0': className = 'revealed'; content = ''; break;
         case '': className = ''; content = ''; break;
         default: className = 'revealed'; content = value;
