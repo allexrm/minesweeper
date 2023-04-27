@@ -42,6 +42,7 @@ const useGameController = () => {
             ...{
                 status: 'new',
                 startTime: 0,
+                playing: 1,
                 bombs: numOfBombs,
                 flags: numOfBombs,
                 board: board 
@@ -51,6 +52,7 @@ const useGameController = () => {
     
     const revealTileContent = (game, row, col) => {
         if (!['running', 'new'].includes(game.status)) return;
+
         if (game.board[row][col] != '') return 0;
         
         if (game.status === 'new') startGame(game);
@@ -77,6 +79,13 @@ const useGameController = () => {
         return revealed;
     };
 
+    const revealMines = (game) => {
+        for (let row=0; row<game.board.length; row++)
+            for (let col=0; col<game.board.length; col++)
+                if (game.board[row][col].indexOf('B') >= 0)
+                    game.board[row][col] = 'X';
+    };
+
     const startGame = (game) => {
         game.status = 'running';
         game.startTime = new Date().getTime();
@@ -91,20 +100,25 @@ const useGameController = () => {
         if (game.startTime===0)
             game.startTime = new Date().getTime();
 
+        // Revealing all mines
+        revealMines(game);
+
         if (game.mode==='multi'){
 
             const duration = Math.round((new Date().getTime() - game.startTime)/1000);
             const date = new Date();
             const f_date = `${String(date.getMonth()).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}-${date.getFullYear()}`;
 
-            return addEntryToLeaderboard({
+            const winner = {
                 name: game.playing===1 ? game.player2 : game.player1,
                 date: f_date,
                 level: game.level.toUpperCase(),
                 duration: duration
-            });    
+            };
+            await addEntryToLeaderboard(winner);
+            return {winner, game};
         } else {
-            return new Promise(resolve => resolve(null));
+            return new Promise(resolve => resolve({winner: null, game: game}));
         }
     };
 
@@ -115,12 +129,15 @@ const useGameController = () => {
         const date = new Date();
         const f_date = `${String(date.getMonth()).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}-${date.getFullYear()}`;
 
-        return addEntryToLeaderboard({
+        const winner = {
             name: game.mode==='multi' && game.playing===1 ? game.player2 : game.player1,
             date: f_date,
             level: game.level.toUpperCase(),
             duration: duration
-        });
+        };
+        
+        await addEntryToLeaderboard(winner);
+        return {winner, game};
     };
     
     return {

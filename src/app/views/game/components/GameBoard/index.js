@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import GameContext from '../GameContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faFlag, faBomb } from '@fortawesome/free-solid-svg-icons';
 
 import './game-board.scss';
 
@@ -11,8 +11,17 @@ const Tile = (props) => {
 
     // eslint-disable-next-line react/prop-types
     const { value, row, col } = props;
-    const className = String(value).indexOf('f')>=0 ? 'flag' : value!=='' && value!=='B' ? 'revealed' : '';
-    const content = className==='flag' ? <FontAwesomeIcon icon={faFlag} /> : ['0','B'].includes(value) ? '' : value; 
+    let className = '';
+    let content = '';
+    switch (value){
+        case 'X': className = 'bomb'; content = <FontAwesomeIcon icon={faBomb} />; break;
+        case 'Bf': className = 'flag'; content = <FontAwesomeIcon icon={faFlag} />; break;
+        case 'f': className = 'flag'; content = <FontAwesomeIcon icon={faFlag} />; break;
+        case 'B': className = ''; content = value; break; //temp
+        case '0': className = 'revealed'; content = ''; break;
+        case '': className = ''; content = ''; break;
+        default: className = 'revealed'; content = value;
+    }
 
     return (
         <div className={`game-board-col ${className}`} {...props} 

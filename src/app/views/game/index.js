@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 
 import useGameController from '../../hooks/useGameController';
+import { NavigationButton } from '../../components/Buttons';
 
 const GameView = ()=>{
     const navigate = useNavigate();
@@ -20,13 +21,14 @@ const GameView = ()=>{
 
         if (game.board[row][col]==='B'){
             GameController.gameOver(game)
-                .then(winner=>{
+                .then(({winner, game})=>{
+                    setGame(prev=>{ return {...prev, ...game}; });
                     if (winner===null){
                         toast.error('GAME OVER!');
-                        navigate('/config');
+                        setTimeout(()=>navigate('/config'), 5000);
                     } else {
-                        toast.success(`CONGRATULATIONS ${winner.data.name}, YOU WON THE CHALLENGE!`);
-                        navigate('/leaderboard');        
+                        toast.success(`CONGRATULATIONS ${winner.name}, YOU WON THE CHALLENGE!`);
+                        setTimeout(()=>navigate('/leaderboard'), 5000);
                     }
                 });
         } else {
@@ -57,15 +59,14 @@ const GameView = ()=>{
     };
 
     useEffect(()=>{
-        console.log(game);
         if (game.revealed == game.sizeX*game.sizeY-game.bombs){
             GameController.completeGame(game).then(winner=>{
                 if (game.mode==='multi'){
-                    toast.success(`CONGRATULATIONS ${winner.data.name}, YOU WON THE CHALLENGE!`);
+                    toast.success(`CONGRATULATIONS ${winner.name}, YOU WON THE CHALLENGE!`);
                 } else {
                     toast.success('CONGRATULATIONS, YOU WON!');
                 }
-                navigate('/leaderboard');
+                setTimeout(()=>navigate('/leaderboard'), 5000);
             });
         }
     },[game]);
@@ -81,6 +82,9 @@ const GameView = ()=>{
                     <GameHeader />
                     <GameBoard />
                 </GameContext.Provider>
+            </div>
+            <div>
+                <NavigationButton className="btn-yellow" icon='faArrowLeft' to='/config' >LEAVE THE GAME</NavigationButton>
             </div>
         </div>
     );
