@@ -8,22 +8,24 @@ const useGameController = () => {
 
     const gameModel = {
         ...{
-            mode: 'single', // single, multi
-            level: 'normal', // easy, normal, hard
-            sizeX: 15, // from 10 to 50
-            sizeY: 15, // from 10 to 50
-            player1: '',
-            player2: '',
-            startTime: null,
-            revealed: 0,
-            bombs: 0,
-            flags: 0,
-            status: 'new', //new, running, paused, completed, gameover
+            status: 'new',      // Game status: new, running, paused, completed, gameover
+            mode: 'single',     // Game mode: single, multi
+            level: 'normal',    // Game dificulty level: easy, normal, hard
+            sizeX: 15,          // Number of columns from 10 to 50
+            sizeY: 15,          // Number of rows from 10 to 50
+            player1: '',        // Player 1 name
+            player2: '',        // Player 2 name
+            playing: 1,         // Who is playing
+            startTime: null,    // Unix time when game was started
+            revealed: 0,        // How many safe tiles was revealed
+            bombs: 0,           // How many mines are in the grid
+            flags: 0,           // How many flags user still can set to a tile
             board: {}
         },
         ...gameConfig
     };
     
+    // Create a new game configuration
     const createNewGame = () => {
         const numOfBombs = Math.floor(gameModel.sizeX * gameModel.sizeY * (gameModel.level==='easy' ? 0.05 : gameModel.level==='normal' ? 0.1 : 0.15));
         let board = new Array(gameModel.sizeY).fill().map(()=>new Array(gameModel.sizeX).fill(''));
@@ -50,6 +52,7 @@ const useGameController = () => {
         };
     };
     
+    // Reveal hidden tile content
     const revealTileContent = (game, row, col) => {
         if (!['running', 'new'].includes(game.status)) return;
 
@@ -79,6 +82,7 @@ const useGameController = () => {
         return revealed;
     };
 
+    // Reveal all hidden mines
     const revealMines = (game) => {
         for (let row=0; row<game.board.length; row++)
             for (let col=0; col<game.board.length; col++)
@@ -86,15 +90,18 @@ const useGameController = () => {
                     game.board[row][col] = 'X';
     };
 
+    // Set game status to 'running'
     const startGame = (game) => {
         game.status = 'running';
         game.startTime = new Date().getTime();
     };
 
+    // Add the game winner to leaderboard
     const addEntryToLeaderboard = async (entry) => {
         return Api.post('/leaderboard', entry);
     };
 
+    // End a running game with 'game over' status
     const gameOver = async (game) => {
         game.status = 'gameover';
         if (game.startTime===0)
@@ -122,6 +129,7 @@ const useGameController = () => {
         }
     };
 
+    // End a game with 'completed' status
     const completeGame = async (game) => {
         game.status = 'completed';
 

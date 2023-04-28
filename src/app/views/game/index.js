@@ -59,6 +59,8 @@ const GameView = ()=>{
     };
 
     useEffect(()=>{
+        if (game.player1==='') navigate('/config');
+
         if (game.revealed == game.sizeX*game.sizeY-game.bombs){
             GameController.completeGame(game).then(winner=>{
                 if (game.mode==='multi'){
